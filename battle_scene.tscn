@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ceaiu7o7aui1c"]
+[gd_scene load_steps=13 format=3 uid="uid://ceaiu7o7aui1c"]
 
 [ext_resource type="Script" path="res://TurnManager.gd" id="1_1fewe"]
 [ext_resource type="Texture2D" uid="uid://cue7v51s1jwob" path="res://Sprites/Dragon.png" id="1_2n7tn"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://PlayerUI.gd" id="9_spf4f"]
 [ext_resource type="Script" path="res://combat_action_button.gd" id="9_ug8eq"]
 [ext_resource type="Script" path="res://reset.gd" id="11_4astr"]
+[ext_resource type="Script" path="res://go_to_menu.gd" id="12_dlhjw"]
 
 [node name="BattleScene" type="Node2D" node_paths=PackedStringArray("player_char", "enemy_char")]
 script = ExtResource("1_1fewe")
@@ -65,7 +66,7 @@ layout_mode = 2
 text = "Slash (5 DMG)"
 script = ExtResource("9_ug8eq")
 
-[node name="Button" type="Button" parent="."]
+[node name="Reset" type="Button" parent="."]
 offset_left = -96.0001
 offset_top = -201.0
 offset_right = -45.0001
@@ -74,9 +75,19 @@ scale = Vector2(3.50903, 3.12964)
 text = "Reset"
 script = ExtResource("11_4astr")
 
+[node name="Go to menu" type="Button" parent="."]
+offset_left = -132.0
+offset_top = -101.0
+offset_right = -33.0
+offset_bottom = -70.0
+scale = Vector2(2.6655, 3.6644)
+text = "Go to menu"
+script = ExtResource("12_dlhjw")
+
 [connection signal="character_begin_turn" from="." to="Player" method="_on_character_begin_turn"]
 [connection signal="pressed" from="PlayerCombatActionUI/CombatAction" to="PlayerCombatActionUI/CombatAction" method="_on_pressed"]
 [connection signal="pressed" from="PlayerCombatActionUI/CombatAction2" to="PlayerCombatActionUI/CombatAction2" method="_on_pressed"]
 [connection signal="pressed" from="PlayerCombatActionUI/CombatAction3" to="PlayerCombatActionUI/CombatAction3" method="_on_pressed"]
 [connection signal="pressed" from="PlayerCombatActionUI/CombatAction4" to="PlayerCombatActionUI/CombatAction4" method="_on_pressed"]
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Reset" to="Reset" method="_on_pressed"]
+[connection signal="pressed" from="Go to menu" to="Go to menu" method="_on_pressed"]
