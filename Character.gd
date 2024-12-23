@@ -6,6 +6,7 @@ class_name Character
 @export var cur_hp : int = 25
 @export var max_hp : int = 25
 
+
 @export var combat_actions : Array
 @export var opponent : Node
 
@@ -51,21 +52,43 @@ func cast_combat_action(action):
 	elif action.heal > 0:
 		heal(action.heal)
 	
-	get_node("/root/BattleScene").end_current_turn
+	get_node("/root/BattleScene").end_current_turn()
 	
 func _decide_combat_action():
 	var health_percent = float(cur_hp) / float(max_hp)
+	var player_chosen_action = CombatAction
 	
-	for i in combat_actions:
-		var action = i as CombatAction
+	var rng = RandomNumberGenerator.new()
+	var combat_action_list = [combat_actions[0], combat_actions[1], combat_actions[2]]
+	
+	var chosen_action : CombatAction
+	
+	if health_percent <= 0.5:
+		print("Enemy healing")
+		chosen_action = combat_actions[0] as CombatAction
+	elif health_percent <= 0.9:
+		print("Enemy choosing")
+		chosen_action = combat_action_list[rng.randi() % combat_action_list.size()]  # Random choice from list
+	elif health_percent == opponent.max_hp:
+		print("Enemy stomp")
+		chosen_action = combat_actions[2]
+	else:
+		print("Enemy slashing")
+		chosen_action = combat_actions[0]
 		
-		if action.heals > 0:
-			if randf() > health_percent + 0.2:
-				cast_combat_action(action)
-				return
-			else:
-				continue
-		else:
-			cast_combat_action(action)
-			return
+	cast_combat_action(chosen_action)
+	return chosen_action
+	#print("something")
+	#for i in combat_actions:
+		#var action = i as CombatAction
+		#
+		#if action.heal > 0:
+			#if randf() > health_percent + 0.2:
+				#cast_combat_action(action)
+				#return
+			#else:
+				#continue
+		#else:
+			#cast_combat_action(action)
+			#return
 	

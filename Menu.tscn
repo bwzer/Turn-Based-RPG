@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://yu8n6ixt2gfc"]
+
+[ext_resource type="Script" path="res://Play.gd" id="1_qg5f7"]
+[ext_resource type="Script" path="res://quit.gd" id="1_ysfvf"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Button" type="Button" parent="camera"]
+offset_left = -57.0
+offset_top = -63.0
+offset_right = 68.0
+offset_bottom = -20.0
+text = "Play
+"
+script = ExtResource("1_qg5f7")
+
+[node name="Label" type="Label" parent="camera"]
+offset_left = -184.0
+offset_top = -204.0
+offset_right = -23.0
+offset_bottom = -181.0
+scale = Vector2(2.65064, 5.77488)
+text = "2D TURN-BASED RPG"
+
+[node name="Button2" type="Button" parent="camera"]
+offset_left = -96.0
+offset_top = 56.0
+offset_right = -4.0
+offset_bottom = 87.0
+scale = Vector2(2.067, 1.86076)
+text = "Quit"
+script = ExtResource("1_ysfvf")
+
+[node name="Button3" type="Button" parent="camera"]
+offset_left = -100.0
+offset_top = 9.0
+offset_right = 113.0
+offset_bottom = 40.0
+text = "Multiplayer (Coming Soon)
+"
+
+[connection signal="pressed" from="camera/Button" to="camera/Button" method="_on_pressed"]
+[connection signal="pressed" from="camera/Button2" to="camera/Button2" method="_on_pressed"]

@@ -6,4 +6,4 @@
 script = ExtResource("1_dmdht")
 display_name = "Heal (5 HP)"
 damage = 0
-heal = 5
+heal = 7
